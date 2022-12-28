@@ -1,3 +1,4 @@
+from collections import Counter
 from string import punctuation
 
 
@@ -18,11 +19,10 @@ def clean_text(text):
 
 def count_words(input_file):
     """Count the number of words in a text file."""
-    counter = 0
-    with open(input_file, "r") as file:
-        for line in file:
-            counter += 1
-    return counter
+    text = load_text(input_file)
+    text = clean_text(text)
+    words = text.split()
+    return Counter(words)
 
 
 print(count_words("../zen.txt"))
